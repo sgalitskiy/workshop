@@ -1,7 +1,7 @@
 {
-    "STORAGE_URL": "",
-    "STORAGE_NAME": "",
-    "STORAGE_KEY": "",
-    "PARTITION_KEY": "",
-    "TABLE_NAME": ""
+    "STORAGE_URL": "https://ppipdb.table.core.windows.net/",
+    "STORAGE_NAME": "ppipdb",
+    "STORAGE_KEY": "5Jo2MHJxaWQ6anWR7C3wC4TXIWXE0WeUiptCD5T6hjBuaUoX9QO3IPzG3IEEAdEjDdUhlbguCDxcG0kFQ/keBw==",
+    "PARTITION_KEY": "partition",
+    "TABLE_NAME": "bookmarks"
 }
