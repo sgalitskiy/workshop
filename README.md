@@ -25,4 +25,4 @@ npm install
 ```
 node bin/www
 ```
-4. Open http://localhost:3012 and enjoy
+4. Open `http://localhost:3012` and enjoy
