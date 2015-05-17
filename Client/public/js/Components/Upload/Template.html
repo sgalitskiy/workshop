@@ -1,0 +1,18 @@
+<div class="popup-container">
+    <header class="header">
+        <div class="title"><%= Title %></div>
+        <span class="close js-close">close</span>
+    </header>
+    <div class="content">
+        <div class="file-wrapper">
+            <label for="file" class="lable btn-success">Browse</label>
+            <input type="file" id="file" class="file">
+        </div>
+        <p class="file-expected"><%= Info %></p>
+        <div>
+            <%_.each(Buttons, function(button){%>
+                <button type="button" class="btn <%= button.ClassName %>"><%= button.Title %></button>
+            <%});%>
+        </div>
+    </div>
+</div>

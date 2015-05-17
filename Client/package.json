@@ -1,0 +1,61 @@
+{
+  "name": "CFMS-server",
+  "main": "app",
+  "description": "CFMS Server side",
+  "contributors": [
+    {
+      "name": "Sergiy Galytskyy",
+      "email": "sgalytskyy@dio-soft.com",
+      "role": "Developer"
+    },
+    {
+      "name": "Bogdan Ivko",
+      "email": "bivko@dio-soft.com",
+      "role": "Developer"
+    }
+  ],
+  "version": "0.1.0",
+  "private": true,
+  "license": "",
+  "scripts": {
+    "start": "node ./bin/www",
+    "deploy": "node ./bin/deploy",
+    "package": "grunt package"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://sgalytskyy@cmfs.scm.azurewebsites.net:443/cmfs.git"
+  },
+  "dependencies": {
+    "body-parser": "~1.8.1",
+    "cookie-parser": "^1.3.3",
+    "crypto": "0.0.3",
+    "debug": "~2.0.0",
+    "express": "~4.9.0",
+    "forever": "~0.13.0",
+    "grunt": "~0.4.2",
+    "grunt-cli": "~0.1.9",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-contrib-requirejs": "~0.1.0",
+    "grunt-contrib-uglify": "~0.4.0",
+    "grunt-spritesmith": "^4.5.2",
+    "jade": "~1.6.0",
+    "mkdirp": "^0.5.0",
+    "moment": "^2.8.4",
+    "morgan": "~1.3.0",
+    "multer": "^0.1.6",
+    "nconf": "~0.7.1",
+    "request": "~2.49.0",
+    "requirejs": "~2.1.10",
+    "rimraf": "^2.2.8",
+    "sendgrid": "^1.3.0",
+    "serve-favicon": "~2.1.3",
+    "underscore": "~1.7.0",
+    "upstart": "0.0.2"
+  },
+  "engines": {
+    "node": ">=0.10.3"
+  },
+  "readmeFilename": "README.md"
+}

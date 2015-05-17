@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    title= title
+    link(type="image/x-icon", rel="shortcut icon", href="/favicon.ico")
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
+
+    block styles
+
+    block script
+
+    <!--[if lt IE 9]>
+    link(rel='stylesheet', href='style-ie8.css')
+    script(src="webapp/assets/html5shiv.js")
+    <![endif]-->
+    script(type="text/javascript")
+      include js/globalVariables.js
+
+  body#main
+    block content

@@ -1,0 +1,1 @@
+var BASE_URL = ''; var SOURCE_PATH = 'theme/default';

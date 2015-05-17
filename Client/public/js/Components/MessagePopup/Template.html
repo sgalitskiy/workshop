@@ -1,0 +1,35 @@
+<div class="popup-container">
+    <header class="header">
+        <div class="title"><%= title %></div>
+        <span class="close js-close">close</span>
+    </header>
+    <div class="content">
+        <p class="text <%= status || '' %>"><%= header %></p>
+        <%if(list){%>
+            <ul class="list">
+                <%if(status === 'radio'){
+                    _.each(list, function(item){%>
+                        <li class="item">
+                            <input type="radio" name="radio-field" value="<%= item.Id %>" id="<%= 'radio'+item.Id %>" <%if(activeElementId == item.Id){%>checked<%}%>>
+                            <label for="<%= 'radio'+item.Id %>"><%= item.Name %></label>
+                        </li>
+                    <%});
+                }else if(status === 'checkbox'){
+                     _.each(list, function(item){%>
+                        <li class="item">
+                            <input type="checkbox" name="<%= 'checkbox'+item.Id %>" id="<%= 'checkbox'+item.Id %>" <%if(activeElementId == item.Id){%>checked<%}%>>
+                            <label for="<%= 'checkbox'+item.Id %>"><%= item.Name %></label>
+                        </li>
+                    <%});
+                }else{
+                    _.each(list, function(item){%>
+                        <li class="item"><%= item %></li>
+                    <%});
+                }%>
+            </ul>
+        <%}%>
+        <%_.each(buttons, function(button){%>
+            <button type="button" class="<%= button.class %>"><%= button.title %></button>
+        <%});%>
+    </div>
+</div>
