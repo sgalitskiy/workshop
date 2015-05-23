@@ -28,7 +28,7 @@ define([
 
         serializeData:function(){
             return {
-                collection:this.collection.toJSON()
+                collection: _.sortBy(this.collection.toJSON(),function(item){return -parseInt(item.priority)})
             }
         },
 
