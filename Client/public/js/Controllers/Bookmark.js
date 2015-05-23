@@ -54,8 +54,10 @@ define([
         editOne:function(id){
             console.log('edit one router', id);
 
+            var _id = id || null;
+
             this.model = new Model({
-                RowKey:id
+                RowKey:_id
             });
 
             this.view = new EditView({
@@ -68,7 +70,10 @@ define([
 
 
             this.options.applicationView.showContent(this.view);
-            this._getOne(id);
+
+            if(_id) {
+                this._getOne(id);
+            }
 
         },
 
@@ -114,7 +119,7 @@ define([
                     }
                 };
 
-            this.model.sync('update', this.model, syncOptions);
+            this.model.sync(data.RowKey ? 'update': 'create', this.model, syncOptions);
         }
 
     });
