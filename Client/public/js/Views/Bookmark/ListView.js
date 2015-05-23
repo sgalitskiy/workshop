@@ -38,12 +38,8 @@ define([
         },
 
         _removeItem:function(e){
-            var id = $(e.currentTarget).closest('tr').data('id');
-
-            console.log('remove item', id);
+            var id = $(e.currentTarget).data('id');
             this.trigger('remove', id);
-
-
             return false;
         },
 

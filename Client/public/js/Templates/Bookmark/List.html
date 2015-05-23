@@ -27,10 +27,15 @@
                     <td><%=item.priority%></td>
                     <td><%=moment(item.Timestamp).format('LLL')%></td>
                     <td>
-                        <a href="#bookmark/<%=item.RowKey%>/edit">
+                        <a class="btn btn-default" href="#bookmark/<%=item.RowKey%>/edit">
                             <span class="glyphicon glyphicon-edit"></span>
                             &nbsp;Edit
                         </a>
+
+                        <span class="btn btn-danger js-remove" data-id="<%=item.RowKey%>">
+                            <span class="glyphicon glyphicon-remove"></span>
+                            &nbsp;Remove
+                        </span>
                     </td>
                 </tr>
             <%})%>

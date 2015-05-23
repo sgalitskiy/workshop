@@ -29,19 +29,23 @@ define([
                 collection: this.collection
             });
 
+            this.listenTo(this.view, {
+                'remove': this._onRemove
+            }, this);
+
             this._fetchCollection();
             this.options.applicationView.showContent(this.view);
         },
 
-        initOne:function(id){
+        initOne: function (id) {
             console.log('init one', id);
-            var _id =  id || null;
+            var _id = id || null;
 
             this.model = new Model({
-                RowKey:_id
+                RowKey: _id
             });
 
-            if (_id){
+            if (_id) {
                 this.view = new OneView({
                     model: this.model
                 });
@@ -51,13 +55,13 @@ define([
             }
         },
 
-        editOne:function(id){
+        editOne: function (id) {
             console.log('edit one router', id);
 
             var _id = id || null;
 
             this.model = new Model({
-                RowKey:_id
+                RowKey: _id
             });
 
             this.view = new EditView({
@@ -71,13 +75,13 @@ define([
 
             this.options.applicationView.showContent(this.view);
 
-            if(_id) {
+            if (_id) {
                 this._getOne(id);
             }
 
         },
 
-        _fetchCollection:function(){
+        _fetchCollection: function () {
             var that = this,
                 syncOptions = {
                     success: function (model, resp, xhr) {
@@ -92,7 +96,7 @@ define([
             this.collection.fetch(syncOptions);
         },
 
-        _getOne:function(){
+        _getOne: function () {
             //this.collection.get(id);
             var syncOptions = {
                 success: function (model, resp, xhr) {
@@ -106,7 +110,7 @@ define([
             this.model.fetch(syncOptions);
         },
 
-        updateOne: function(data){
+        updateOne: function (data) {
             var that = this,
                 syncOptions = {
                     cdata: data,
@@ -119,7 +123,22 @@ define([
                     }
                 };
 
-            this.model.sync(data.RowKey ? 'update': 'create', this.model, syncOptions);
+            this.model.sync(data.RowKey ? 'update' : 'create', this.model, syncOptions);
+        },
+
+        _onRemove: function (id) {
+            var model = this.collection.get(id),
+                syncOptions = {
+                    success: function (model, resp, xhr) {
+                        console.log('success get ONE item');
+                        location.reload();
+                    },
+                    error: function () {
+                        console.log('error getting ONE item');
+                    }
+                };
+
+            model.sync('delete', model, syncOptions);
         }
 
     });
