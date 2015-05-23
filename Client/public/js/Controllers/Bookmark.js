@@ -127,14 +127,16 @@ define([
         },
 
         _onRemove: function (id) {
-            var model = this.collection.get(id),
+            var that = this,
+                model = this.collection.get(id),
                 syncOptions = {
                     success: function (model, resp, xhr) {
-                        console.log('success get ONE item');
-                        location.reload();
+                        console.log('success remove ONE item');
+                        that.collection.remove(model);
+                        that.view.render();
                     },
                     error: function () {
-                        console.log('error getting ONE item');
+                        console.log('error remove ONE item');
                     }
                 };
 

@@ -38,8 +38,15 @@ define([
         },
 
         _removeItem:function(e){
-            var id = $(e.currentTarget).data('id');
-            this.trigger('remove', id);
+            var id = $(e.currentTarget).data('id'),
+                model = this.collection.get(id),
+                modelJSON = model.toJSON(),
+                message = 'Are sure to remove item\n' + modelJSON.title + '\n?';
+
+            if (confirm(message)) {
+                this.trigger('remove', id);
+            }
+
             return false;
         },
 
