@@ -1,5 +1,17 @@
-<h2>one item template</h2>
+<% if(model && model.title){%>
 
-<pre>
-    <%=JSON.stringify(model)%>
-</pre>
+<h1><%=model.title%></h1>
+<h2><%=model.description%></h2>
+
+<p>
+<% if (model.location){%>
+    <a href="<%=model.location%>" target="_blank"><%=model.location%></a>
+<%}%>
+</p>
+
+<p>Created: <%=moment(model.Timestamp).format('LLLL')%></p>
+<p>Last updated: <%=moment(model._.updated).format('LLLL')%></p>
+
+<%} else {%>
+    <p class="wait">Please wait, loading</p>
+<%}%>

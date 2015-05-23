@@ -16,7 +16,7 @@
             <% _.each(collection, function(item){%>
                 <tr>
                     <td>
-                        <%=item.title%>
+                        <a href="#bookmark/<%=item.RowKey%>" title="show deatils"><%=item.title%></a>
                     </td>
                     <td><%=item.desc%></td>
                     <td>
