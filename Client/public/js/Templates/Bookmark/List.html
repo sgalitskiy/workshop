@@ -19,10 +19,16 @@
     </table>
 
 
+    <% _.each(collection, function(item){%>
+        <p><%=item.RowKey%></p>
+    <%})%>
+
+
     <p>items:</p>
-    <pre>
+    <pre class="small">
         <%=JSON.stringify(collection)%>
     </pre>
+
 
 <% } else { %>
     <p class="Wait, loading">Please wait, loading...</p>

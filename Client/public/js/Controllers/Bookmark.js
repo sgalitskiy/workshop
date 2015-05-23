@@ -23,6 +23,7 @@ define([
         },
 
         initList: function () {
+            console.log('init list page uhahaha');
             this.collection = new Collection();
             this.view = new ListView({
                 collection: this.collection
