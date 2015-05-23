@@ -22,7 +22,7 @@ define([
         },
 
         onRender: function() {
-
+            console.log('render one edit page', this.model);
         },
 
         serializeData:function(){

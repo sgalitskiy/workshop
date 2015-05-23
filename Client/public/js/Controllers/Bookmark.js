@@ -96,18 +96,22 @@ define([
             this.collection.fetch(syncOptions);
         },
 
-        _getOne: function () {
-            //this.collection.get(id);
-            var syncOptions = {
-                success: function (model, resp, xhr) {
-                    console.log('success get ONE item');
-                },
-                error: function () {
-                    console.log('error getting ONE item');
-                }
-            };
+        _getOne: function (id) {
+            if (this.collection && this.collection.get(id)){
+                this.model.set(this.collection.get(id).toJSON());
+                this.view.render();
+            } else {
+                var syncOptions = {
+                    success: function (model, resp, xhr) {
+                        console.log('success get ONE item');
+                    },
+                    error: function () {
+                        console.log('error getting ONE item');
+                    }
+                };
 
-            this.model.fetch(syncOptions);
+                this.model.fetch(syncOptions);
+            }
         },
 
         updateOne: function (data) {
