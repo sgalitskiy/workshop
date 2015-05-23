@@ -7,11 +7,26 @@
                 <th>Description</th>
                 <th>URL</th>
                 <th>Priority</th>
+                <th>Created</th>
 
             </tr>
         </thead>
 
         <tbody>
+            <% _.each(collection, function(item){%>
+                <tr>
+                    <td><%=item.title%></td>
+                    <td><%=item.desc%></td>
+                    <td>
+                        <% if (item.location){%>
+                            <a href="<%=item.location%>"><%=item.location%></a>
+                        <%}%>
+                    </td>
+                    <td><%=item.priority%></td>
+                    <td><%=item.Timestamp%></td>
+                </tr>
+            <%})%>
+
             <tr>
                 <td colspan="4" class="text-center">Bookmarks will be placed here</td>
             </tr>
