@@ -28,10 +28,6 @@ define([
                 collection: this.collection
             });
 
-            this.listenTo(this.view,{
-                'remove':this._removeOne
-            }, this);
-
             this._fetchCollection();
             this.options.applicationView.showContent(this.view);
         },
@@ -55,31 +51,7 @@ define([
         },
 
         editOne:function(id){
-            var _id = id || null;
-
-            if (_id){
-                this.model = new Model({
-                    RowKey: _id
-                });
-
-                this._getOne();
-            } else {
-                this.model = new Model({
-                    RowKey:null
-                });
-            }
-
-            this.view = new EditView({
-                model: this.model
-            });
-
-            this.listenTo(this.view,{
-                'submit': this.updateOne
-            },this);
-
-            this.options.applicationView.showContent(this.view);
-
-            console.log('edit one');
+            console.log('edit one router', id);
         },
 
         _fetchCollection:function(){
@@ -98,22 +70,17 @@ define([
         },
 
         _getOne:function(){
-            if (this.collection && this.collection.length){
-                var model = this.collection.get(this.model.id);
-                this.model.set(model.toJSON());
-                this.model.trigger('sync');
-            } else {
-                var syncOptions = {
-                    success: function (model, resp, xhr) {
-                        console.log('success get ONE item');
-                    },
-                    error: function () {
-                        console.log('error getting ONE item');
-                    }
-                };
+            //this.collection.get(id);
+            var syncOptions = {
+                success: function (model, resp, xhr) {
+                    console.log('success get ONE item');
+                },
+                error: function () {
+                    console.log('error getting ONE item');
+                }
+            };
 
-                this.model.fetch(syncOptions);
-            }
+            this.model.fetch(syncOptions);
         },
 
         updateOne: function(data){
@@ -130,23 +97,6 @@ define([
                 };
 
             this.model.sync(data.RowKey ? 'update': 'create', this.model, syncOptions);
-        },
-
-        _removeOne:function(id){
-            var that = this,
-                model = this.collection.get(id),
-                syncOptions = {
-                    success: function (model, resp, xhr) {
-                        console.log('success update ONE item');
-                        that.collection.remove(model);
-                        that.view.render();
-                    },
-                    error: function () {
-                        console.log('error update ONE item');
-                    }
-                };
-
-            model.sync('delete', model, syncOptions);
         }
 
     });

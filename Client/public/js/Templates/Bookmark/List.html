@@ -1,7 +1,4 @@
 <% if (collection && collection.length){ %>
-    <a href="#addBookmark" class="btn btn-default pull-right" >
-        <span class="glyphicon glyphicon-plus"></span> Add new
-    </a>
 
     <table class="table">
         <thead>
@@ -10,38 +7,23 @@
                 <th>Description</th>
                 <th>URL</th>
                 <th>Priority</th>
-                <th>Action</th>
+
             </tr>
         </thead>
 
-    <% var sorted = _.sortBy(collection, function(item){return item.priority ? -item.priority : 0})%>
-
-    <% _.each(sorted, function(item){%>
-        <tr data-id="<%=item.RowKey%>">
-            <td>
-                <a href="#bookmark/<%=item.RowKey%>" title="View details"><%=item.title%></a>
-            </td>
-            <td><%=item.desc%></td>
-            <td>
-                <% if (item.location){%>
-                    <a href="<%=item.location%>" target="_blank"><%=item.location%></a>
-                <%} else {%>
-                   none
-                <%}%>
-            </td>
-            <td><%=item.priority%></td>
-            <td>
-                <a href="#bookmark/<%=item.RowKey%>/edit" class="btn btn-default">
-                    <span class="glyphicon glyphicon-edit"></span> Edit
-                </a>
-
-                </button>&nbsp;<button class="btn btn-danger js-remove">
-                    <span class="glyphicon glyphicon-remove"></span> Remove
-                </button>
-            </td>
-        </tr>
-    <%})%>
+        <tbody>
+            <tr>
+                <td colspan="4" class="text-center">Bookmarks will be placed here</td>
+            </tr>
+        </tbody>
     </table>
+
+
+    <p>items:</p>
+    <pre>
+        <%=JSON.stringify(collection)%>
+    </pre>
+
 <% } else { %>
     <p class="Wait, loading">Please wait, loading...</p>
 <%}%>

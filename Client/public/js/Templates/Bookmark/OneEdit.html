@@ -9,18 +9,6 @@
         <label for="title">Title</label> <br/>
         <input type="text" name="title" id="title" value="<%=model.title%>"/>
     </div>
-    <div class="form-group">
-        <label for="location">URL</label> <br/>
-        <input type="text" name="location" id="location" value="<%=model.location%>"/>
-    </div>
-    <div class="form-group">
-        <label for="desc">Description</label><br/>
-        <textarea name="desc" id="desc" cols="50" rows="5"><%=_.escape(model.desc) || 'empty'%></textarea>
-    </div>
-    <div class="form-group">
-        <label for="priority">Priority</label><br/>
-        <input type="number" name="priority" id="priority" min="0" max="5" value="<%=model.priority || 0%>"/>
-    </div>
 
     <div class="form-group">
         <input type="submit" value="Submit" class="btn btn-info"/>

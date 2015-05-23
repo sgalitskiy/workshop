@@ -10,7 +10,7 @@ define([
         template: _.template(template),
 
         events:{
-            'click .js-edit': '_editItem'
+
         },
 
         initialize:function(options){
@@ -29,10 +29,6 @@ define([
             return {
                 model:this.model.toJSON()
             }
-        },
-
-        editItem:function(e){
-            console.log('edit item', $(e.currentTarget));
         }
 
     });
