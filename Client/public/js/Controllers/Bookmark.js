@@ -62,6 +62,10 @@ define([
                 model: this.model
             });
 
+            this.listenTo(this.view, {
+                'save': this.updateOne
+            }, this);
+
 
             this.options.applicationView.showContent(this.view);
             this._getOne(id);
@@ -110,7 +114,7 @@ define([
                     }
                 };
 
-            this.model.sync(data.RowKey ? 'update': 'create', this.model, syncOptions);
+            this.model.sync('update', this.model, syncOptions);
         }
 
     });
