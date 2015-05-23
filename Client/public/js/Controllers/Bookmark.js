@@ -53,6 +53,19 @@ define([
 
         editOne:function(id){
             console.log('edit one router', id);
+
+            this.model = new Model({
+                RowKey:id
+            });
+
+            this.view = new EditView({
+                model: this.model
+            });
+
+
+            this.options.applicationView.showContent(this.view);
+            this._getOne(id);
+
         },
 
         _fetchCollection:function(){

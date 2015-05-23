@@ -8,42 +8,35 @@
                 <th>URL</th>
                 <th>Priority</th>
                 <th>Created</th>
-
+                <th>Action</th>
             </tr>
         </thead>
 
         <tbody>
             <% _.each(collection, function(item){%>
                 <tr>
-                    <td><%=item.title%></td>
+                    <td>
+                        <%=item.title%>
+                    </td>
                     <td><%=item.desc%></td>
                     <td>
                         <% if (item.location){%>
-                            <a href="<%=item.location%>"><%=item.location%></a>
+                            <a href="<%=item.location%>" target="_blank"><%=item.location%></a>
                         <%}%>
                     </td>
                     <td><%=item.priority%></td>
-                    <td><%=item.Timestamp%></td>
+                    <td><%=moment(item.Timestamp).format('LLL')%></td>
+                    <td>
+                        <a href="#bookmark/<%=item.RowKey%>/edit">
+                            <span class="glyphicon glyphicon-edit"></span>
+                            &nbsp;Edit
+                        </a>
+                    </td>
                 </tr>
             <%})%>
 
-            <tr>
-                <td colspan="4" class="text-center">Bookmarks will be placed here</td>
-            </tr>
         </tbody>
     </table>
-
-
-    <% _.each(collection, function(item){%>
-        <p><%=item.RowKey%></p>
-    <%})%>
-
-
-    <p>items:</p>
-    <pre class="small">
-        <%=JSON.stringify(collection)%>
-    </pre>
-
 
 <% } else { %>
     <p class="Wait, loading">Please wait, loading...</p>
