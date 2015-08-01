@@ -1,6 +1,11 @@
 # Front-end workshop
 
 ## Getting started server
+00. install node.js o your machine
+0. Install express server globally
+```
+npm install express -g
+```
 1. Clone project with `GIT` to your workstation
 2. Open console
 3. Go to API folder and run `npm` with
