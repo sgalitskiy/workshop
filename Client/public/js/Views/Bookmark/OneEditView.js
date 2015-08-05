@@ -10,15 +10,11 @@ define([
         template: _.template(template),
 
         events:{
-          'submit form':'_onSubmit'
+
         },
 
         initialize:function(options){
             this.model = options.model;
-
-            this.listenTo(this.model, {
-                'sync': this.render
-            })
         },
 
         onRender: function() {
@@ -29,16 +25,7 @@ define([
             return {
                 model:this.model.toJSON()
             }
-        },
-
-        _onSubmit:function(e){
-            var data = $(e.currentTarget).serializeJSON();
-            this.trigger('save', data);
-
-            console.log('submit ololo');
-            return false;
         }
-
 
     });
 

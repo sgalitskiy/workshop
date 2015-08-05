@@ -33,8 +33,10 @@
     "nconf": "~0.7.1",
     "request": "~2.49.0",
     "requirejs": "~2.1.10",
+    "rimraf": "^2.2.8",
     "serve-favicon": "~2.2.0",
-    "underscore": "~1.7.0"
+    "underscore": "~1.7.0",
+    "upstart": "0.0.2"
   },
   "engines": {
     "node": ">=0.10.3"

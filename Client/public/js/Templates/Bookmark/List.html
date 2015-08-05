@@ -1,48 +1,5 @@
-<% if (collection && collection.length){ %>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>URL</th>
-                <th>Priority</th>
-                <th>Created</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            <% _.each(collection, function(item){%>
-                <tr>
-                    <td>
-                        <a href="#bookmark/<%=item.RowKey%>" title="show deatils"><%=item.title%></a>
-                    </td>
-                    <td><%=item.desc%></td>
-                    <td>
-                        <% if (item.location){%>
-                            <a href="<%=item.location%>" target="_blank"><%=item.location%></a>
-                        <%}%>
-                    </td>
-                    <td><%=item.priority%></td>
-                    <td><%=moment(item.Timestamp).format('LLL')%></td>
-                    <td>
-                        <a class="btn btn-default" href="#bookmark/<%=item.RowKey%>/edit">
-                            <span class="glyphicon glyphicon-edit"></span>
-                            &nbsp;Edit
-                        </a>
-
-                        <span class="btn btn-danger js-remove" data-id="<%=item.RowKey%>">
-                            <span class="glyphicon glyphicon-remove"></span>
-                            &nbsp;Remove
-                        </span>
-                    </td>
-                </tr>
-            <%})%>
-
-        </tbody>
-    </table>
-
-<% } else { %>
-    <p class="Wait, loading">Please wait, loading...</p>
+<%if (collection && collection.length){%>
+<pre>
+    <%=JSON.stringify(collection)%>
+</pre>
 <%}%>

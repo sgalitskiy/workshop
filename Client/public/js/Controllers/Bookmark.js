@@ -29,10 +29,6 @@ define([
                 collection: this.collection
             });
 
-            this.listenTo(this.view, {
-                'remove': this._onRemove
-            }, this);
-
             this._fetchCollection();
             this.options.applicationView.showContent(this.view);
         },
@@ -55,32 +51,6 @@ define([
             }
         },
 
-        editOne: function (id) {
-            console.log('edit one router', id);
-
-            var _id = id || null;
-
-            this.model = new Model({
-                RowKey: _id
-            });
-
-            this.view = new EditView({
-                model: this.model
-            });
-
-            this.listenTo(this.view, {
-                'save': this.updateOne
-            }, this);
-
-
-            this.options.applicationView.showContent(this.view);
-
-            if (_id) {
-                this._getOne(id);
-            }
-
-        },
-
         _fetchCollection: function () {
             var that = this,
                 syncOptions = {
@@ -97,21 +67,7 @@ define([
         },
 
         _getOne: function (id) {
-            if (this.collection && this.collection.get(id)){
-                this.model.set(this.collection.get(id).toJSON());
-                this.view.render();
-            } else {
-                var syncOptions = {
-                    success: function (model, resp, xhr) {
-                        console.log('success get ONE item');
-                    },
-                    error: function () {
-                        console.log('error getting ONE item');
-                    }
-                };
-
-                this.model.fetch(syncOptions);
-            }
+            //this.model.fetch(syncOptions);
         },
 
         updateOne: function (data) {
@@ -128,23 +84,6 @@ define([
                 };
 
             this.model.sync(data.RowKey ? 'update' : 'create', this.model, syncOptions);
-        },
-
-        _onRemove: function (id) {
-            var that = this,
-                model = this.collection.get(id),
-                syncOptions = {
-                    success: function (model, resp, xhr) {
-                        console.log('success remove ONE item');
-                        that.collection.remove(model);
-                        that.view.render();
-                    },
-                    error: function () {
-                        console.log('error remove ONE item');
-                    }
-                };
-
-            model.sync('delete', model, syncOptions);
         }
 
     });
