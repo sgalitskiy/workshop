@@ -17,12 +17,14 @@ define([
             this.collection = options.collection;
 
             this.listenTo(this.collection, {
-                'sync': this._renderList
+                'sync': this._renderList,
+                'remove':this._renderList,
+                'super-event':this._renderList
             }, this);
         },
 
-        onRender: function () {
-            console.log('render event run');
+        onRender: function (e,v,t) {
+            console.log('render event run', e,v,t);
         },
 
         serializeData: function () {
@@ -48,7 +50,6 @@ define([
                 title = this.getTitle(id);
 
             if (confirm('Are you sure to remove bookmark\n"' + title + '"?')) {
-                console.log('remove', id);
                 this.trigger('remove', id);
             }
         }

@@ -104,16 +104,30 @@ define([
                 };
 
             this.model.sync((data.RowKey ? 'update':'create'), this.model, syncOptions);
-            //this.model.sync(data.RowKey ? 'update' : 'create', this.model, syncOptions);
         },
 
         onRemove:function(id){
-            console.log('remove from controller', id);
+            var model = this.collection.get(id);
+
+            var that = this,
+                syncOptions = {
+                    success: function (model, resp, xhr) {
+                        that.onRemoveSuccess(model);
+                        console.log('success remove');
+                    },
+                    error: function () {
+                        console.log('error remove ONE item');
+                    }
+                };
+
+            model.sync('delete', model, syncOptions);
         },
 
-        onSave:function(data){
-            console.log('fro controller', data);
+        onRemoveSuccess:function(model){
+            this.collection.remove(model);
 
+            this.collection.trigger('super-event');
+            this.view.render();
         }
 
     });

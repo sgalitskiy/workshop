@@ -35,7 +35,7 @@ define([
             var $form = $(e.currentTarget),
                 data = $form.serializeJSON({parseAll:true});
 
-            this.trigger('save', data);
+            this.model.trigger('save', data);
             e.preventDefault();
         }
 

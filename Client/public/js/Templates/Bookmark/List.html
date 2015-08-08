@@ -25,7 +25,7 @@
                 </td>
                 <td><%=item.desc%></td>
                 <td><%=item.priority%></td>
-                <td>
+                <td class="text-nowrap">
                     <a href="#bookmark/<%=item.RowKey%>" class="btn btn-default js-edit">
                         <i class="glyphicon glyphicon-edit"></i>
                         Edit
@@ -42,11 +42,6 @@
     </tbody>
 
 </table>
-
-
-<pre>
-    <%=JSON.stringify(collection)%>
-</pre>
 
 <%} else {%>
 <p>Please wait. Loading....</p>
