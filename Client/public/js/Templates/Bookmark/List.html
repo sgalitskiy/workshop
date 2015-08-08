@@ -1,5 +1,35 @@
-<%if (collection && collection.length){%>
+<% if (collection && collection.length){%>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Location</th>
+            <th>Description</th>
+            <th>Priority</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% _.each(collection, function(item){%>
+            <tr>
+                <td><%=item.RowKey%></td>
+                <td><%=item.title%></td>
+                <td><%=item.location%></td>
+                <td><%=item.desc%></td>
+                <td><%=item.priority%></td>
+            </tr>
+        <%})%>
+    </tbody>
+
+</table>
+
+
 <pre>
     <%=JSON.stringify(collection)%>
 </pre>
+
+<%} else {%>
+<p>Please wait. Loading....</p>
 <%}%>

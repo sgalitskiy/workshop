@@ -9,7 +9,7 @@ define([
         template: _.template(template),
 
         regions : {
-            main: '#content',
+            container: '#content',
             header: '#header',
             footer: '.footer'
         },
@@ -25,8 +25,7 @@ define([
 
         renderHeader: function() {
             this.header.show(new HeaderView({
-                model:this.model,
-                app: this.options.app
+                model:this.model
             }));
         },
 
@@ -34,7 +33,7 @@ define([
             if (view){
                 this.contentView = view;
             }
-            this.main.show(this.contentView);
+            this.container.show(this.contentView);
         },
 
         refreshContent: function(view){

@@ -78,8 +78,7 @@ function (Backbone, Marionette, Router, AccountManager, ApplicationView) {
 
     app.accountManager = new AccountManager();
     app.applicationView = new ApplicationView({
-        model: app.accountManager,
-        app: app
+        model: app.accountManager
     });
 
     app.addRegions({

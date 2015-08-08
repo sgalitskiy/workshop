@@ -16,6 +16,8 @@ define([
             }
         },
 
+
+
         initialize: function (application) {
             this.application = application;
             this._initControllers();
@@ -86,6 +88,7 @@ define([
                 }
 
                 that.processAppRoutes(that._getRoutes(key), routes);
+                this.processAppRoutes('')
             }
         },
 

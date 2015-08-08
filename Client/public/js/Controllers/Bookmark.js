@@ -54,8 +54,7 @@ define([
         _fetchCollection: function () {
             var that = this,
                 syncOptions = {
-                    success: function (model, resp, xhr) {
-                        that.stored = that.collection;
+                    success: function (collection, resp, xhr) {
                         console.log('success get items');
                     },
                     error: function () {
