@@ -51,7 +51,7 @@ define([
             });
 
             this.listenTo(this.view, {
-                'save':this.onSave
+                'save':this.updateOne
             }, this);
 
             this.options.applicationView.showContent(this.view);
@@ -103,7 +103,8 @@ define([
                     }
                 };
 
-            this.model.sync(data.RowKey ? 'update' : 'create', this.model, syncOptions);
+            this.model.sync((data.RowKey ? 'update':'create'), this.model, syncOptions);
+            //this.model.sync(data.RowKey ? 'update' : 'create', this.model, syncOptions);
         },
 
         onRemove:function(id){
@@ -112,6 +113,7 @@ define([
 
         onSave:function(data){
             console.log('fro controller', data);
+
         }
 
     });
