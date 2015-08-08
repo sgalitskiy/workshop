@@ -50,6 +50,10 @@ define([
                 model: this.model
             });
 
+            this.listenTo(this.view, {
+                'save':this.onSave
+            }, this);
+
             this.options.applicationView.showContent(this.view);
 
             if (id){
@@ -104,6 +108,10 @@ define([
 
         onRemove:function(id){
             console.log('remove from controller', id);
+        },
+
+        onSave:function(data){
+            console.log('fro controller', data);
         }
 
     });

@@ -16,7 +16,9 @@
                    class="form-control"/>
         </div>
         <div class="form-group"><label for="desciptiton">Description</label>
-            <textarea name="desc" value="desciptiton" id="desciptiton" cols="30" rows="10" class="form-control"><%=model.desc%></textarea>
+            <textarea name="desc" id="desciptiton" cols="30" rows="10" class="form-control">
+                <%=_.escape(model.desc)%>
+            </textarea>
         </div>
 
         <p>
@@ -25,7 +27,6 @@
     </div>
 </form>
 
-<pre><%=JSON.stringify(model)%></pre>
 <%} else {%>
 <p>PLease wait, loading...</p>
 <%}%>

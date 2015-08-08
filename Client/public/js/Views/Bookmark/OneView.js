@@ -10,7 +10,7 @@ define([
         template: _.template(template),
 
         events:{
-
+            'submit form':'onSubmit'
         },
 
         initialize:function(options){
@@ -29,6 +29,14 @@ define([
             return {
                 model:this.model.toJSON()
             }
+        },
+
+        onSubmit: function(e){
+            var $form = $(e.currentTarget),
+                data = $form.serializeJSON({parseAll:true});
+
+            this.trigger('save', data);
+            e.preventDefault();
         }
 
     });
