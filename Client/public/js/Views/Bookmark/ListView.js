@@ -36,7 +36,8 @@ define([
         },
 
         onEdit:function(e){
-            console.log('edit me');
+            var id = $(e.currentTarget).closest('tr').data('id');
+            console.log('edit me, id=', id);
         }
 
 
