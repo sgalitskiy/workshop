@@ -10,7 +10,7 @@ define([
         template: _.template(template),
 
         events:{
-
+            'click .js-edit':'onEdit'
         },
 
         initialize:function(options){
@@ -33,6 +33,10 @@ define([
 
         _renderList: function() {
             this.render();
+        },
+
+        onEdit:function(e){
+            console.log('edit me');
         }
 
 
