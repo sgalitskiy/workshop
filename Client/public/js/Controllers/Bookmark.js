@@ -38,19 +38,21 @@ define([
         },
 
         initOne: function (id) {
-            console.log('init one', id);
+            console.log('init one ', id);
             var _id = id || null;
 
             this.model = new Model({
                 RowKey: _id
             });
 
-            if (_id) {
-                this.view = new OneView({
-                    model: this.model
-                });
 
-                this.options.applicationView.showContent(this.view);
+            this.view = new OneView({
+                model: this.model
+            });
+
+            this.options.applicationView.showContent(this.view);
+
+            if (id){
                 this._getOne(_id);
             }
         },
@@ -71,6 +73,17 @@ define([
 
         _getOne: function (id) {
             //this.model.fetch(syncOptions);
+            var that = this,
+                syncOptions = {
+                    success: function (model, resp, xhr) {
+                        console.log('success get items');
+                    },
+                    error: function () {
+                        console.log('error getting item');
+                    }
+                };
+
+            this.model.fetch(syncOptions);
         },
 
         updateOne: function (data) {
