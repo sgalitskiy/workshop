@@ -29,6 +29,10 @@ define([
                 collection: this.collection
             });
 
+            this.listenTo(this.view, {
+                'remove':this.onRemove
+            }, this);
+
             this._fetchCollection();
             this.options.applicationView.showContent(this.view);
         },
@@ -83,6 +87,10 @@ define([
                 };
 
             this.model.sync(data.RowKey ? 'update' : 'create', this.model, syncOptions);
+        },
+
+        onRemove:function(id){
+            console.log('remove from controller', id);
         }
 
     });

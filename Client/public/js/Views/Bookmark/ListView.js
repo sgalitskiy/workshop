@@ -3,17 +3,17 @@ define([
     'marionette',
     'text!Templates/Bookmark/List.html'
 
-],function(_, Marionette, template) {
+], function (_, Marionette, template) {
 
     var view = Marionette.ItemView.extend({
 
         template: _.template(template),
 
-        events:{
-            'click .js-edit':'onEdit'
+        events: {
+            'click .js-remove': 'onRemove'
         },
 
-        initialize:function(options){
+        initialize: function (options) {
             this.collection = options.collection;
 
             this.listenTo(this.collection, {
@@ -21,25 +21,37 @@ define([
             }, this);
         },
 
-        onRender: function() {
+        onRender: function () {
             console.log('render event run');
         },
 
-        serializeData:function(){
+        serializeData: function () {
             return {
                 collection: this.collection.toJSON()
             }
         },
 
-        _renderList: function() {
+        _renderList: function () {
             this.render();
         },
 
-        onEdit:function(e){
-            var id = $(e.currentTarget).closest('tr').data('id');
-            console.log('edit me, id=', id);
-        }
+        getTitle: function (id) {
+            var model = this.collection.get(id);
 
+            console.log(model);
+
+            return model.get('title');
+        },
+
+        onRemove: function (e) {
+            var id = $(e.currentTarget).closest('tr').data('id'),
+                title = this.getTitle(id);
+
+            if (confirm('Are you sure to remove bookmark\n"' + title + '"?')) {
+                console.log('remove', id);
+                this.trigger('remove', id);
+            }
+        }
 
 
     });
