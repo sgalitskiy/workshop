@@ -10,7 +10,9 @@ define([
         template: _.template(template),
 
         events: {
-            'click .js-remove': 'onRemove'
+            'click .js-remove': 'onRemove',
+            'click th':'changeSort'
+
         },
 
         initialize: function (options) {
@@ -21,15 +23,21 @@ define([
                 'remove':this._renderList,
                 'super-event':this._renderList
             }, this);
+
+            this.sortBy = "priority";
+            this.sortABC = true;
+
         },
 
-        onRender: function (e,v,t) {
-            console.log('render event run', e,v,t);
+        onRender: function () {
+            console.log('render event run');
         },
 
         serializeData: function () {
+            var that = this;
             return {
-                collection: this.collection.toJSON()
+                collection: _.sortBy(this.collection.toJSON(), function(item){return that.sortABC ? item[that.sortBy]: -item[that.sortBy]}),
+                sortBy:this.sortBy
             }
         },
 
@@ -51,6 +59,16 @@ define([
 
             if (confirm('Are you sure to remove bookmark\n"' + title + '"?')) {
                 this.trigger('remove', id);
+            }
+        },
+
+        changeSort:function(e){
+            var  sortBy = $(e.currentTarget).data('sort');
+
+            if (sortBy){
+                //this.sortABC = !this.sortABC;
+                this.sortBy = sortBy;
+                this.render();
             }
         }
 

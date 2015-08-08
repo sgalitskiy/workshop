@@ -4,16 +4,18 @@
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th>Title</th>
-            <th>Location</th>
-            <th>Description</th>
-            <th>Priority</th>
+            <th data-sort="title" class="<%=sortBy=='title' ? 'active':''%>">Title</th>
+            <th data-sort="location" class="<%=sortBy=='location' ? 'active':''%>">Location</th>
+            <th data-sort="desc" class="<%=sortBy=='desc' ? 'active':''%>">Description</th>
+            <th data-sort="priority" class="<%=sortBy=='priority' ? 'active':''%>">Priority</th>
             <th>Actions</th>
         </tr>
     </thead>
 
     <tbody>
-        <% _.each(collection, function(item){%>
+        <% //var //sorted = collection.sort(function(a,b){return b.priority-a.priority});
+            var sorted = _.sortBy(collection, function(item){return -item['priority']});
+           _.each(sorted, function(item){%>
             <tr data-id="<%=item.RowKey%>">
                 <td>
                     <a href="#bookmark/<%=item.RowKey%>"><%=item.title%></a>
