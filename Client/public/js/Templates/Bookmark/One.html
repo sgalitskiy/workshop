@@ -1,32 +1,6 @@
-<% if (model.Timestamp || !model.RowKey){%>
-<form action="">
-    <div>
-        <div class="form-group">
-            <input name="RowKey" type="hidden" value="<%=model.RowKey%>"/>
+<% if(model && model.title){%>
 
-            <label for="title">Title</label>
-            <input type="text" name="title" value="<%=model.title%>" id="title" class="form-control"/>
-        </div>
+<h1><%=model.title%></h1>
+<h2><%=model.description%></h2>
 
-        <div class="form-group">
-            <label for="location">Location</label><input type="text" name="location" value="<%=model.location%>"
-                                                         id="location" class="form-control"/>
-        </div>
-        <div class="form-group">
-            <label for="priority">Priority</label>
-            <input type="number" name="priority" value="<%=model.priority%>" id="priority" max="20" min="1"
-                   class="form-control"/>
-        </div>
-        <div class="form-group"><label for="desciptiton">Description</label>
-            <textarea name="desc" id="desciptiton" cols="30" rows="10" class="form-control"><%=_.escape(model.desc)%></textarea>
-        </div>
-
-        <p>
-            <input type="submit" value="Submit" class="btn btn-info"/>
-        </p>
-    </div>
-</form>
-
-<%} else {%>
-<p>PLease wait, loading...</p>
 <%}%>

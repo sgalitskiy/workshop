@@ -10,8 +10,7 @@ define([
         template: _.template(template),
 
         events: {
-            'click .js-remove': 'onRemove',
-            'click th':'changeSort'
+           
 
         },
 
@@ -19,9 +18,7 @@ define([
             this.collection = options.collection;
 
             this.listenTo(this.collection, {
-                'sync': this._renderList,
-                'remove':this._renderList,
-                'super-event':this._renderList
+                'sync': this._renderList
             }, this);
 
             this.sortBy = "priority";
@@ -34,42 +31,13 @@ define([
         },
 
         serializeData: function () {
-            var that = this;
             return {
-                collection: _.sortBy(this.collection.toJSON(), function(item){return that.sortABC ? item[that.sortBy]: -item[that.sortBy]}),
-                sortBy:this.sortBy
+                collection: this.collection.toJSON()
             }
         },
 
         _renderList: function () {
             this.render();
-        },
-
-        getTitle: function (id) {
-            var model = this.collection.get(id);
-
-            console.log(model);
-
-            return model.get('title');
-        },
-
-        onRemove: function (e) {
-            var id = $(e.currentTarget).closest('tr').data('id'),
-                title = this.getTitle(id);
-
-            if (confirm('Are you sure to remove bookmark\n"' + title + '"?')) {
-                this.trigger('remove', id);
-            }
-        },
-
-        changeSort:function(e){
-            var  sortBy = $(e.currentTarget).data('sort');
-
-            if (sortBy){
-                //this.sortABC = !this.sortABC;
-                this.sortBy = sortBy;
-                this.render();
-            }
         }
 
 

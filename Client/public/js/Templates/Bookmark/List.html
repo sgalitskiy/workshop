@@ -1,50 +1,7 @@
 <% if (collection && collection.length){%>
 <h1>Bookmarks list</h1>
+<pre><%=collection%></pre>
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th data-sort="title" class="<%=sortBy=='title' ? 'active':''%>">Title</th>
-            <th data-sort="location" class="<%=sortBy=='location' ? 'active':''%>">Location</th>
-            <th data-sort="desc" class="<%=sortBy=='desc' ? 'active':''%>">Description</th>
-            <th data-sort="priority" class="<%=sortBy=='priority' ? 'active':''%>">Priority</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <% //var //sorted = collection.sort(function(a,b){return b.priority-a.priority});
-            var sorted = _.sortBy(collection, function(item){return -item['priority']});
-           _.each(sorted, function(item){%>
-            <tr data-id="<%=item.RowKey%>">
-                <td>
-                    <a href="#bookmark/<%=item.RowKey%>"><%=item.title%></a>
-                </td>
-                <td>
-                    <% if (item.location){%>
-                        <a href="<%=item.location%>" target="_blank"><%=item.location%></a>
-                    <%}%>
-                </td>
-                <td><%=item.desc%></td>
-                <td><%=item.priority%></td>
-                <td class="text-nowrap">
-                    <a href="#bookmark/<%=item.RowKey%>" class="btn btn-default js-edit">
-                        <i class="glyphicon glyphicon-edit"></i>
-                        Edit
-                    </a>
-
-                    <button class="btn btn-danger js-remove">
-                        <i class="glyphicon glyphicon-remove"></i>
-                        Remove
-                    </button>
-                </td>
-
-            </tr>
-        <%})%>
-    </tbody>
-
-</table>
-
-<%} else {%>
-<p>Please wait. Loading....</p>
+<% } else { %>
+    <p class="Wait, loading">Please wait, loading...</p>
 <%}%>

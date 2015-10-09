@@ -88,48 +88,7 @@ define([
                 };
 
             this.model.fetch(syncOptions);
-        },
-
-        updateOne: function (data) {
-            var that = this,
-                syncOptions = {
-                    cdata: data,
-                    success: function (model, resp, xhr) {
-                        console.log('success update ONE item');
-                        that.options.router.navigate('/', true);
-                    },
-                    error: function () {
-                        console.log('error update ONE item');
-                    }
-                };
-
-            this.model.sync((data.RowKey ? 'update':'create'), this.model, syncOptions);
-        },
-
-        onRemove:function(id){
-            var model = this.collection.get(id);
-
-            var that = this,
-                syncOptions = {
-                    success: function (model, resp, xhr) {
-                        that.onRemoveSuccess(model);
-                        console.log('success remove');
-                    },
-                    error: function () {
-                        console.log('error remove ONE item');
-                    }
-                };
-
-            model.sync('delete', model, syncOptions);
-        },
-
-        onRemoveSuccess:function(model){
-            this.collection.remove(model);
-
-            this.collection.trigger('super-event');
-            this.view.render();
         }
-
     });
 
     return controller;
