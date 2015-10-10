@@ -1,7 +1,9 @@
 define([
     'underscore',
     'marionette',
-    'text!Templates/Bookmark/List.html'
+    'text!Templates/Bookmark/List.html',
+
+    'moment'
 
 ], function (_, Marionette, template) {
 
