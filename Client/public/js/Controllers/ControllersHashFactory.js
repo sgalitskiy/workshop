@@ -1,9 +1,10 @@
 define([
     'underscore',
     'Controllers/Bookmark',
+    'Controllers/Static',
     'Controllers/Login'
 
-], function (_, Bookmark, Login) {
+], function (_, Bookmark, Static, Login) {
     'use strict';
 
     return {
@@ -17,6 +18,7 @@ define([
 
             var controllers = {
                 bookmarkController: new Bookmark(params),
+                staticController: new Static(params),
                 loginController: new Login(params)
             };
 

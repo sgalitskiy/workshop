@@ -16,6 +16,10 @@ define([
 
                 //"bookmark/:id(/)":"initOne",
                 //"addBookmark(/)" : "initOne"
+            },
+
+            "static":{
+                "page/:id":'renderPage'
             }
         },
 
