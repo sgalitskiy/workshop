@@ -12,7 +12,8 @@ define([
         template: _.template(template),
 
         events: {
-            'click .js-remove':'onRemove'
+            'click .js-remove':'onRemove',
+            'click th':'onSort'
         },
 
         initialize: function (options) {
@@ -23,6 +24,8 @@ define([
                 'remove':this._renderList
             }, this);
 
+            this.sortBy = 'priority'
+
         },
 
         onRender: function () {
@@ -30,9 +33,24 @@ define([
         },
 
         serializeData: function () {
+            var sorted,
+                collection = this.collection.toJSON();
+
+            if (collection && collection.length) {
+                if (this.sortBy == 'priority') {
+                    sorted = _.sortBy(collection, function (item) {
+                        return -item.priority
+                    })
+                } else if (this.sortBy == 'title') {
+                    sorted = _.sortBy(collection, function (item) {
+                        return (item.title + '').toLowerCase()
+                    })
+                }
+            }
+
             return {
-                collection: this.collection.toJSON(),
-                sortBy: 'title'
+                collection: sorted,
+                sortBy: this.sortBy
             }
         },
 
@@ -49,6 +67,19 @@ define([
             console.log('on remove', id);
 
             e.stopPropagation();
+        },
+
+        onSort:function(e){
+            console.log('sort run');
+            var $th = $(e.currentTarget),
+                sortBy = $th.data('sort');
+
+            if (sortBy){
+                this.sortBy = sortBy;
+                this._renderList();
+            }
+
+            e.preventDefault();
         }
 
 

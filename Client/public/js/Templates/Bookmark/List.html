@@ -5,25 +5,27 @@
 
 <table class="table table-striped">
     <tr>
-        <th>ID</th>
-        <th>Title/link</th>
-        <th>description</th>
-        <th>priority</th>
-        <th>timestamp</th>
+        <th data-sort="RowKey" class="<%=sortBy=='RowKey'?'text-danger':''%>">ID</th>
+        <th data-sort="title" class="<%=sortBy=='title'?'text-danger':''%>">Title</th>
+        <th data-sort="link" class="<%=sortBy=='link'?'text-danger':''%>">Link</th>
+        <th data-sort="desc" class="<%=sortBy=='desc'?'text-danger':''%>">description</th>
+        <th data-sort="priority" class="<%=sortBy=='priority'?'text-danger':''%>">priority</th>
+        <th data-sort="Timestamp" class="<%=sortBy=='Timestamp'?'text-danger':''%>">timestamp</th>
         <th>Action</th>
     </tr>
 
     <tbody>
-        <% var sorted = _.sortBy(collection, function(item){return -item.priority});
-
-            _.each(sorted, function(item){%>
+        <%  _.each(collection, function(item){%>
             <tr>
                 <td><%=item.RowKey%></td>
 
+                <td>
+                    <%=item.title%>
+                </td>
 
                 <td>
                     <% if (item.location){ %>
-                        <a href="<%=item.location%>" target="_blank">[<%=item.title%> | <%=item.location%>]</a>
+                        <a href="<%=item.location%>" target="_blank">[<%=item.location%>]</a>
                     <% } %>
                 </td>
 
@@ -32,7 +34,7 @@
                 <td><%=item.priority%></td>
                 <td class="text-nowrap"><%=moment(item.Timestamp).format('LLL')%></td>
 
-                <td>
+                <td class="text-nowrap">
                     <a href="#item/<%=item.RowKey%>" class="btn btn-default">
                         <span class="glyphicon glyphicon-edit"></span>
                          Edit
