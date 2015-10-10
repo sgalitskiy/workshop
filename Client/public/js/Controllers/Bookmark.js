@@ -29,6 +29,7 @@ define([
                 collection: this.collection
             });
 
+
             this._fetchCollection();
             this.options.applicationView.showContent(this.view);
         },
@@ -45,6 +46,11 @@ define([
             this.view = new OneView({
                 model: this.model
             });
+
+            this.listenTo(this.view, {
+                "save-data":this._onSaveData
+            }, this);
+
 
             this.options.applicationView.showContent(this.view);
 
@@ -80,6 +86,24 @@ define([
                 };
 
             this.model.fetch(syncOptions);
+        },
+
+        _onSaveData:function(data){
+            console.log('data-controller', data);
+
+            var that = this,
+                syncOptions = {
+                    cdata:data,
+                    success: function (model, resp, xhr) {
+                        console.log('success update item');
+                        that.options.router.navigate('/', true);
+                    },
+                    error: function () {
+                        console.log('error update item');
+                    }
+                };
+
+            this.model.sync('update', this.model, syncOptions);
         }
     });
 

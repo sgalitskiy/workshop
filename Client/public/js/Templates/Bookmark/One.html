@@ -1,7 +1,33 @@
 <% if(model && model.title){%>
 
-    <h1><%=model.title%></h1>
-    <h2><%=model.location%></h2>
+    <h1>Edit bookmark</h1>
+
+    <form action="">
+        <input name="RowKey" type="hidden" value="<%=model.RowKey%>"/>
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" placeholder="title" name="title" value="<%=model.title%>">
+        </div>
+
+        <div class="form-group">
+            <label for="link">location</label>
+            <input type="text" class="form-control" id="link" placeholder="url location" name="location" value="<%=model.location%>">
+        </div>
+
+        <div class="form-group">
+            <label for="priority">Priority</label>
+            <input type="number" class="form-control" id="priority" placeholder="priority" min="0" max="20" name="priority" value="<%=model.priority%>">
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea name="desc" id="description" cols="30" rows="10" class="form-control"><%=model.desc%></textarea>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Submit" class="btn btn-primary"/>
+        </div>
+    </form>
 
 <%} else {%>
     <p class="text-muted">Please wait, loading....</p>
