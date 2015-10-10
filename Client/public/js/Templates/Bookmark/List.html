@@ -1,25 +1,33 @@
 <% if (collection && collection.length){%>
 
 <h1>Bookmarks list</h1>
-<h2>Sorted by <%=sortBy%></h2>
+<!--<h2>Sorted by <%=sortBy%></h2>-->
 
 <table class="table table-striped">
     <tr>
         <th>ID</th>
-        <th>Title</th>
+        <th>Title/link</th>
         <th>description</th>
-        <th>location</th>
         <th>priority</th>
         <th>timestamp</th>
     </tr>
 
     <tbody>
-        <% _.each(collection, function(item){%>
+        <% var sorted = _.sortBy(collection, function(item){return -item.priority});
+
+            _.each(sorted, function(item){%>
             <tr>
                 <td><%=item.RowKey%></td>
-                <td><%=item.title%></td>
+
+
+                <td>
+                    <% if (item.location){ %>
+                        <a href="<%=item.location%>" target="_blank">[<%=item.title%> | <%=item.location%>]</a>
+                    <% } %>
+                </td>
+
                 <td><%=item.desc%></td>
-                <td><%=item.location%></td>
+
                 <td><%=item.priority%></td>
                 <td class="text-nowrap"><%=moment(item.Timestamp).format('LLL')%></td>
             </tr>
