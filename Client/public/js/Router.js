@@ -12,7 +12,8 @@ define([
                 //routes
                 "(/)":"initList",
                 "bookmark(s)/all":"initList",
-                "item/:id": "initOne"
+                "item/:id": "initOne",
+                "itemNew" : "initOne"
 
                 //"bookmark/:id(/)":"initOne",
                 //"addBookmark(/)" : "initOne"

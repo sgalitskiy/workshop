@@ -37,6 +37,12 @@
                         <span class="glyphicon glyphicon-edit"></span>
                          Edit
                     </a>
+
+                    <button data-id="<%=item.RowKey%>" class="js-remove btn btn-danger">
+                        <span class="glyphicon glyphicon-remove"></span>
+                        Remove
+                    </button>
+
                 </td>
 
             </tr>
@@ -45,8 +51,6 @@
     </tbody>
 
 </table>
-
-<pre><%=JSON.stringify(collection)%></pre>
 
 <% } else { %>
     <p class="Wait, loading">Please wait, loading...</p>

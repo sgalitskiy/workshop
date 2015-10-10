@@ -91,8 +91,8 @@ define([], function () {
             remove:{
                 buildRequest: function (options, model) {
                     return {
-                        type: 'POST',
-                        url: 'bookmark/delete/'+model.id
+                        type: 'DELETE',
+                        url: 'bookmark/'+model.id
                     };
                 },
 
