@@ -29,10 +29,6 @@ define([
                 collection: this.collection
             });
 
-            this.listenTo(this.view, {
-                'remove':this.onRemove
-            }, this);
-
             this._fetchCollection();
             this.options.applicationView.showContent(this.view);
         },

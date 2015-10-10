@@ -9,6 +9,7 @@ define([
 
     var Model = Backbone.Model.extend({
         idAttribute : 'RowKey',
+        url: 'someUrl',
 
         defaults: function () {
             return {

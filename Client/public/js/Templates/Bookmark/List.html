@@ -1,6 +1,22 @@
 <% if (collection && collection.length){%>
+
 <h1>Bookmarks list</h1>
-<pre><%=collection%></pre>
+<h2>Sorted by <%=sortBy%></h2>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>description</th>
+        <th>location</th>
+        <th>priority</th>
+        <th>timestamp</th>
+    </tr>
+
+
+</table>
+
+<pre><%=JSON.stringify(collection)%></pre>
 
 <% } else { %>
     <p class="Wait, loading">Please wait, loading...</p>

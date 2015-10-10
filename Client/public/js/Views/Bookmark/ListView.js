@@ -21,9 +21,6 @@ define([
                 'sync': this._renderList
             }, this);
 
-            this.sortBy = "priority";
-            this.sortABC = true;
-
         },
 
         onRender: function () {
@@ -32,7 +29,8 @@ define([
 
         serializeData: function () {
             return {
-                collection: this.collection.toJSON()
+                collection: this.collection.toJSON(),
+                sortBy: 'title'
             }
         },
 
