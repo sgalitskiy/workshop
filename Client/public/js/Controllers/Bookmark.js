@@ -46,10 +46,6 @@ define([
                 model: this.model
             });
 
-            this.listenTo(this.view, {
-                'save':this.updateOne
-            }, this);
-
             this.options.applicationView.showContent(this.view);
 
             if (id){

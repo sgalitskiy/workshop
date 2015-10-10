@@ -10,6 +10,7 @@
         <th>description</th>
         <th>priority</th>
         <th>timestamp</th>
+        <th>Action</th>
     </tr>
 
     <tbody>
@@ -30,6 +31,14 @@
 
                 <td><%=item.priority%></td>
                 <td class="text-nowrap"><%=moment(item.Timestamp).format('LLL')%></td>
+
+                <td>
+                    <a href="#item/<%=item.RowKey%>" class="btn btn-default">
+                        <span class="glyphicon glyphicon-edit"></span>
+                         Edit
+                    </a>
+                </td>
+
             </tr>
         <% }) %>
 

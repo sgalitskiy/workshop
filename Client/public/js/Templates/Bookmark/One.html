@@ -1,6 +1,8 @@
 <% if(model && model.title){%>
 
-<h1><%=model.title%></h1>
-<h2><%=model.description%></h2>
+    <h1><%=model.title%></h1>
+    <h2><%=model.location%></h2>
 
+<%} else {%>
+    <p class="text-muted">Please wait, loading....</p>
 <%}%>
