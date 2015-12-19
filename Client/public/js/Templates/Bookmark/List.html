@@ -1,11 +1,11 @@
+<h1><%=title%></h1>
+
 <%if (collection && collection.length){%>
     <table class="table table-stripped">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Title</th>
                 <th>Description</th>
-                <th>Timestamp</th>
                 <th>Location</th>
                 <th>Priority</th>
             </tr>
@@ -14,11 +14,15 @@
         <tbody>
             <% _.each(collection, function(item){%>
                 <tr>
-                    <td><%=item.RowKey%></td>
-                    <td><%=item.title%></td>
+                    <td>
+                        <a href="#bookmark/<%=item.RowKey%>">
+                            <%=item.title%>
+                        </a>
+                    </td>
                     <td><%=item.desc%></td>
-                    <td><%=item.Timestamp%></td>
-                    <td><%=item.location%></td>
+                    <td>
+                        <a href="<%=item.location%>"><%=item.location%></a>
+                    </td>
                     <td><%=item.priority%></td>
                 </tr>
             <%})%>
@@ -26,9 +30,6 @@
 
     </table>
 
-    <pre>
-        <%=JSON.stringify(collection)%>
-    </pre>
 <%} else {%>
     <p>LOading....</p>
 <%}%>

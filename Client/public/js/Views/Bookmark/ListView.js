@@ -27,6 +27,7 @@ define([
 
         serializeData:function(){
             return {
+                title: 'Collection list',
                 collection: this.collection.toJSON()
             }
         },

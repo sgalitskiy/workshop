@@ -40,25 +40,54 @@ define([
             this.model = new Model({
                 RowKey: _id
             });
-            
+
+            this.view = new OneView({
+                model:this.model
+            });
+
+
+            this.options.applicationView.showContent(this.view);
+            this._getOne(_id);
         },
 
         _fetchCollection: function () {
-            var that = this,
-                syncOptions = {
-                    success: function (model, resp, xhr) {
-                        that.stored = that.collection;
-                        console.log('success get items');
-                    },
-                    error: function () {
-                        console.log('error getting item');
-                    }
-                };
+            //if (!(this.collection && this.collection.length)){
+            //    //...store
+            //} else {
+                var that = this,
+                    syncOptions = {
+                        success: function (model, resp, xhr) {
+                            that.stored = that.collection;
+                            console.log('success get items');
+                        },
+                        error: function () {
+                            console.log('error getting item');
+                        }
+                    };
 
-            this.collection.fetch(syncOptions);
+                this.collection.fetch(syncOptions);
+            //}
         },
 
         _getOne: function (id) {
+            var model;
+            if (this.collection && (model = this.collection.get(id))){
+                this.view.model = model;
+                this.view.render();
+            } else {
+                // check collection
+                var that = this,
+                    syncOptions = {
+                        success: function (model, resp, xhr) {
+                            console.log('success get ONE items');
+                        },
+                        error: function () {
+                            console.log('error getting ONE item');
+                        }
+                    };
+
+                this.model.fetch(syncOptions);
+            }
             //this.model.fetch(syncOptions);
         },
 
