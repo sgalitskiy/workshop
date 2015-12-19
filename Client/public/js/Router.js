@@ -12,25 +12,14 @@ define([
                 //routes
                 "(/)":"initList",
                 "bookmark(s)/all":"initList",
-                "item/:id": "initOne",
-                "itemNew" : "initOne"
-
-                //"bookmark/:id(/)":"initOne",
-                //"addBookmark(/)" : "initOne"
-            },
-
-            "static":{
-                "page/:id":'renderPage'
+                "bookmark/:id(/)":"initOne"
             }
         },
-
-
 
         initialize: function (application) {
             this.application = application;
             this._initControllers();
             this._initRoutes();
-            this._initListeners();
 
             this.listenTo(this, 'route', function (name, args) {
                 this.history.push(Backbone.history.fragment);
@@ -41,38 +30,6 @@ define([
             this.controllers = ControllersHashFactory.create(
                 this.application,
                 this);
-        },
-
-        _initListeners:function(){
-            var that = this;
-
-            this.listenTo(this.application.accountManager,{
-                'login-success':function(backRoute){
-                    var role = that.application.accountManager.get('RoleName'),
-                        path;
-
-                    if(backRoute && Constants.RolePages[role].indexOf(backRoute) != -1){
-                        path = backRoute;
-                    } else {
-                        //path = Constants.RolePages[role][0].Url;
-
-                        //
-                        // @COMENTED FOR SERGEY
-                        //
-                    }
-
-                    this.navigate(path, {trigger:true});
-                },
-
-                'logout':function(param){
-                    that.application.accountManager._clearData();
-                    this.navigate("login", { trigger: true });
-                },
-
-                'goTo' : function(path, trigger){
-                    this.navigate(path, {trigger: trigger!==undefined ? trigger : true});
-                }
-            }, this);
         },
 
         _getRoutes:function(route){
@@ -96,7 +53,6 @@ define([
                 }
 
                 that.processAppRoutes(that._getRoutes(key), routes);
-                this.processAppRoutes('')
             }
         },
 

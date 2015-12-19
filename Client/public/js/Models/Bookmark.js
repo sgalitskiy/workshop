@@ -13,7 +13,8 @@ define([
 
         defaults: function () {
             return {
-                'RowKey': null
+                'RowKey': null,
+                'data-time': new Date().getTime()
             };
         },
 
