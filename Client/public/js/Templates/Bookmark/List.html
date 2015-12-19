@@ -1,5 +1,34 @@
 <%if (collection && collection.length){%>
-<pre>
-    <%=JSON.stringify(collection)%>
-</pre>
+    <table class="table table-stripped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Timestamp</th>
+                <th>Location</th>
+                <th>Priority</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% _.each(collection, function(item){%>
+                <tr>
+                    <td><%=item.RowKey%></td>
+                    <td><%=item.title%></td>
+                    <td><%=item.desc%></td>
+                    <td><%=item.Timestamp%></td>
+                    <td><%=item.location%></td>
+                    <td><%=item.priority%></td>
+                </tr>
+            <%})%>
+        </tbody>
+
+    </table>
+
+    <pre>
+        <%=JSON.stringify(collection)%>
+    </pre>
+<%} else {%>
+    <p>LOading....</p>
 <%}%>
