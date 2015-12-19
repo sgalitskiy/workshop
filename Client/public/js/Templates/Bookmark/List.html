@@ -14,7 +14,7 @@
 
         <tbody>
             <% _.each(collection, function(item){%>
-                <tr>
+                <tr data-id="<%=item.RowKey%>">
                     <td>
                         <a href="#bookmark/<%=item.RowKey%>">
                             <%=item.title%>
@@ -25,10 +25,14 @@
                         <a href="<%=item.location%>"><%=item.location%></a>
                     </td>
                     <td><%=item.priority%></td>
-                    <td>
+                    <td class="text-nowrap">
                         <a href="#bookmark/edit/<%=item.RowKey%>" class="btn btn-default">
                             <i class="glyphicon glyphicon-edit"></i> Edit
                         </a>
+
+                        <button class="btn btn-danger js-remove">
+                            <i class="glyphicon glyphicon-remove"></i> Remove
+                        </button>
                     </td>
                 </tr>
 

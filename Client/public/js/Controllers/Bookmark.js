@@ -29,6 +29,10 @@ define([
                 collection: this.collection
             });
 
+            this.listenTo(this.view, {
+                'remove':this._onRemove
+            }, this);
+
             this._fetchCollection();
             this.options.applicationView.showContent(this.view);
         },
@@ -124,7 +128,27 @@ define([
 
             this.model.sync(data.RowKey? 'update':'create', this.model, syncOptions);
 
+        },
+
+        _onRemove:function(id){
+            console.log('removeitem', id);
+            var that = this,
+                model = this.collection.get(id);
+
+            var syncOptions = {
+                success: function (model, resp, xhr) {
+                    that.collection.remove(model);
+                    //that.options.router.navigate('/', true);
+                    console.log('success remove ONE item');
+                },
+                error: function () {
+                    console.log('error remove ONE item');
+                }
+            };
+
+            model.sync('delete', model, syncOptions);
         }
+
 
 
     });
