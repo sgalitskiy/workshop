@@ -30,7 +30,8 @@ define([
             });
 
             this.listenTo(this.view, {
-                'remove':this._onRemove
+                'remove':this._onRemove,
+                'remove-batch':this._onRemove
             }, this);
 
             this._fetchCollection();
@@ -132,22 +133,35 @@ define([
 
         _onRemove:function(id){
             console.log('removeitem', id);
-            var that = this,
-                model = this.collection.get(id);
+            var that = this;
 
-            var syncOptions = {
-                success: function (model, resp, xhr) {
-                    that.collection.remove(model);
-                    //that.options.router.navigate('/', true);
-                    console.log('success remove ONE item');
-                },
-                error: function () {
-                    console.log('error remove ONE item');
-                }
+            var removeOneItem = function(_id){
+                var model = that.collection.get(_id);
+
+                var syncOptions = {
+                    success: function (model, resp, xhr) {
+                        that.collection.remove(model);
+                        //that.options.router.navigate('/', true);
+                        console.log('success remove ONE item');
+                    },
+                    error: function () {
+                        console.log('error remove ONE item');
+                    }
+                };
+
+                model.sync('delete', model, syncOptions);
             };
 
-            model.sync('delete', model, syncOptions);
+            if (typeof id != 'string'){
+                for (var i= 0,l=id.length; i<l; i++){
+                    removeOneItem(id[i])
+                }
+            } else {
+                removeOneItem(i)
+            }
+
         }
+
 
 
 
