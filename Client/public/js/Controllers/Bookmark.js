@@ -33,7 +33,7 @@ define([
             this.options.applicationView.showContent(this.view);
         },
 
-        initOne: function (id) {
+        one:function(id, view){
             console.log('init one', id);
             var _id = id || null;
 
@@ -41,14 +41,30 @@ define([
                 RowKey: _id
             });
 
-            this.view = new OneView({
+            this.view = new view({
                 model:this.model
             });
 
+            this.listenTo(this.view, {
+                'save-data':this._onSave
+            }, this);
 
             this.options.applicationView.showContent(this.view);
-            this._getOne(_id);
+
+            if (_id){
+                this._getOne(_id);
+            }
         },
+
+        initOne: function (id) {
+            this.one(id, OneView);
+        },
+
+        initEditMode:function(id){
+            this.one(id, EditView);
+        },
+
+
 
         _fetchCollection: function () {
             //if (!(this.collection && this.collection.length)){
@@ -91,9 +107,25 @@ define([
             //this.model.fetch(syncOptions);
         },
 
-        updateOne: function (data) {
-            
+        _onSave:function(data){
+            console.log('controller', data);
+            var that =  this;
+
+            var syncOptions = {
+                cdata: data,
+                success: function (model, resp, xhr) {
+                    that.options.router.navigate('/', true);
+                    console.log('success update ONE item');
+                },
+                error: function () {
+                    console.log('error update ONE item');
+                }
+            };
+
+            this.model.sync(data.RowKey? 'update':'create', this.model, syncOptions);
+
         }
+
 
     });
 

@@ -8,6 +8,7 @@
                 <th>Description</th>
                 <th>Location</th>
                 <th>Priority</th>
+                <th>Action</th>
             </tr>
         </thead>
 
@@ -24,7 +25,13 @@
                         <a href="<%=item.location%>"><%=item.location%></a>
                     </td>
                     <td><%=item.priority%></td>
+                    <td>
+                        <a href="#bookmark/edit/<%=item.RowKey%>" class="btn btn-default">
+                            <i class="glyphicon glyphicon-edit"></i> Edit
+                        </a>
+                    </td>
                 </tr>
+
             <%})%>
         </tbody>
 

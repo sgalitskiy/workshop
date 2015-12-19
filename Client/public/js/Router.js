@@ -12,7 +12,9 @@ define([
                 //routes
                 "(/)":"initList",
                 "bookmark(s)/all":"initList",
-                "bookmark/:id(/)":"initOne"
+                "bookmark/:id(/)":"initOne",
+                "bookmark/edit/:id(/)":"initEditMode",
+                "add_bookmark":"initEditMode"
             }
         },
 
