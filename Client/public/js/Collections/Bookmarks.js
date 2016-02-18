@@ -12,7 +12,6 @@ define([
     var Collection = BaseCollection.extend({
         model: Model,
 
-
         someMethod: function(data, model){
             //ServerCommandExecutor.execute(this, ServerInteractionSerializersHash.Manager.Action, options);
         }

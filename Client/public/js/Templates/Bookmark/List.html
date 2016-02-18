@@ -1,5 +1,67 @@
+<h1><%=title%></h1>
+
+
 <%if (collection && collection.length){%>
-<pre>
-    <%=JSON.stringify(collection)%>
-</pre>
+
+
+<div class="pull-right">
+    <a href="#add_bookmark" class="btn btn-primary">
+        <i class="glyphicon glyphicon-plus"></i> Add new
+    </a>
+</div>
+<form action="">
+    <table class="table table-stripped">
+        <thead>
+            <tr>
+                <th></th>
+                <th class="js-sortable <%=sortBy=='title'?'bg-danger':''%>" data-sort="title">Title</th>
+                <th class="js-sortable <%=sortBy=='desc'?'bg-danger':''%>" data-sort="desc">Description</th>
+                <th>Location</th>
+                <th class="js-sortable <%=sortBy=='priority'?'bg-danger':''%>" data-sort="priority">Priority</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% sorted = _.sortBy(collection, function(item){return sortABC ? item[sortBy]: -item[sortBy]});%>
+            <% _.each(sorted, function(item){%>
+                <tr data-id="<%=item.RowKey%>">
+                    <td>
+                        <input type="checkbox" name="delete[]" id="" value="<%=item.RowKey%>"/>
+                    </td>
+                    <td>
+                        <a href="#bookmark/<%=item.RowKey%>">
+                            <%=item.title%>
+                        </a>
+                    </td>
+                    <td><%=item.desc%></td>
+                    <td>
+                        <a href="<%=item.location%>"><%=item.location%></a>
+                    </td>
+                    <td><%=item.priority%></td>
+                    <td class="text-nowrap">
+                        <a href="#bookmark/edit/<%=item.RowKey%>" class="btn btn-default">
+                            <i class="glyphicon glyphicon-edit"></i> Edit
+                        </a>
+
+                        <button class="btn btn-danger js-remove">
+                            <i class="glyphicon glyphicon-remove"></i> Remove
+                        </button>
+                    </td>
+                </tr>
+
+            <%})%>
+        </tbody>
+
+    </table>
+
+
+    <button role="submit" type="submit" class="btn btn-danger">
+        <i class="glyphicon glyphicon-remove"></i> Remove Selected
+    </button>
+
+    </form>
+
+<%} else {%>
+    <p>LOading....</p>
 <%}%>

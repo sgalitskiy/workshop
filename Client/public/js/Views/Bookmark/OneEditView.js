@@ -32,11 +32,13 @@ define([
         },
 
         _onSubmit:function(e){
-            var data = $(e.currentTarget).serializeJSON();
-            this.trigger('save', data);
+            var $form = $(e.currentTarget),
+                data = $form.serializeJSON({parseAll:true});
 
-            console.log('submit ololo');
-            return false;
+            console.log(data);
+            this.trigger('save-data', data);
+
+            e.preventDefault();
         }
 
 
