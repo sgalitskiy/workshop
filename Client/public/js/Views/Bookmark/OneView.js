@@ -22,7 +22,7 @@ define([
         },
 
         onRender: function() {
-            console.log('render');
+            console.log('render one model');
         },
 
         serializeData:function(){
@@ -41,6 +41,8 @@ define([
 
             e.preventDefault();
         }
+
+
 
     });
 

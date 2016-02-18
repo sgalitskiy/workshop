@@ -27,7 +27,8 @@ define([
 
         serializeData:function(){
             return {
-                collection: this.collection.toJSON()
+                collection: this.collection.toJSON(),
+                header:'bla-bla'
             }
         },
 

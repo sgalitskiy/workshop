@@ -1,5 +1,41 @@
+<h1><%=header%></h1>
+
 <%if (collection && collection.length){%>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>location</th>
+            <th>priority</th>
+            <th>timestamp</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% _.each(collection, function(item){%>
+            <tr>
+                <td>
+                    <a href="#bookmark/<%=item.RowKey%>">
+                        <%=item.title%>
+                    </a>
+                </td>
+                <td>
+                    <a href="<%=item.location%>"><%=item.location%></a>
+                </td>
+                <td><%=item.priority%></td>
+                <td>
+                    <%=moment(item.Timestamp).format('LLL')%>
+                </td>
+            </tr>
+        <%})%>
+    </tbody>
+
+</table>
+
 <pre>
     <%=JSON.stringify(collection)%>
 </pre>
+<%} else {%>
+    <p>Please wait, loading....</p>
 <%}%>

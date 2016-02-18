@@ -40,6 +40,18 @@ define([
             this.model = new Model({
                 RowKey: _id
             });
+
+            this.view = new OneView({
+                model:this.model
+            });
+
+            this.listenTo(this.view, {
+                'save-data': this.updateOne
+            }, this);
+
+            this._getOne(_id);
+
+            this.options.applicationView.showContent(this.view)
             
         },
 
@@ -59,11 +71,33 @@ define([
         },
 
         _getOne: function (id) {
-            //this.model.fetch(syncOptions);
+            var that = this,
+                syncOptions = {
+                    success: function (model, resp, xhr) {
+                        console.log('success get one item');
+                    },
+                    error: function () {
+                        console.log('error getting one item');
+                    }
+                };
+
+            this.model.fetch(syncOptions);
         },
 
         updateOne: function (data) {
-            
+            console.log('bla-controller', data);
+
+            var that = this,
+                syncOptions = {
+                    cdata:data,
+                    success: function (model, resp, xhr) {
+                        console.log('success get one item');
+                    },
+                    error: function () {
+                        console.log('error getting one item');
+                    }
+                };
+            this.model.sync('update', this.model, syncOptions);
         }
 
 
