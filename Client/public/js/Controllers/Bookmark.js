@@ -5,7 +5,7 @@ define([
     'Collections/Bookmarks',
     'Views/Bookmark/ListView',
     'Views/Bookmark/OneView',
-    'Views/Bookmark/OneEditView'
+    'Views/Bookmark/OneEditView',
 
 ], function (Backbone, ControllerBase, Model, Collection, ListView, OneView, EditView) {
 
@@ -52,7 +52,7 @@ define([
             this._getOne(_id);
 
             this.options.applicationView.showContent(this.view)
-            
+
         },
 
         _fetchCollection: function () {
@@ -92,6 +92,7 @@ define([
                     cdata:data,
                     success: function (model, resp, xhr) {
                         console.log('success get one item');
+                        router.navigate("/", {trigger: true});
                     },
                     error: function () {
                         console.log('error getting one item');
