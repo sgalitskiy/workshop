@@ -92,7 +92,6 @@ define([
                     cdata:data,
                     success: function (model, resp, xhr) {
                         console.log('success get one item');
-                        router.navigate("/", {trigger: true});
                     },
                     error: function () {
                         console.log('error getting one item');
