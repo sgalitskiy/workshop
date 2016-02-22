@@ -6,8 +6,9 @@ define([
     'Views/Bookmark/ListView',
     'Views/Bookmark/OneView',
     'Views/Bookmark/OneEditView',
+    'Views/Bookmark/newBookmarkView'
 
-], function (Backbone, ControllerBase, Model, Collection, ListView, OneView, EditView) {
+], function (Backbone, ControllerBase, Model, Collection, ListView, OneView, EditView, newBookmarkView) {
 
     var controller = ControllerBase.extend({
         titleHeader: 'Bookmarks',
@@ -52,6 +53,38 @@ define([
             this._getOne(_id);
 
             this.options.applicationView.showContent(this.view)
+
+        },
+
+        addBookmark: function () {
+            console.log('add Bookmark init');
+
+            this.model = new Model({
+                // RowKey: _id
+            });
+
+            this.view = new newBookmarkView({
+                // model: this.model
+            });
+
+            this.options.applicationView.showContent(this.view)
+
+            // var _id = id || null;
+            //
+            // this.model = new Model({
+            //     RowKey: _id
+            // });
+            //
+            // this.view = new OneView({
+            //     model:this.model
+            // });
+            //
+            // this.listenTo(this.view, {
+            //     'save-data': this.updateOne
+            // }, this);
+            //
+            // this._getOne(_id);
+            //
 
         },
 
