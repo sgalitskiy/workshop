@@ -31,6 +31,10 @@ define([
 
             this._fetchCollection();
             this.options.applicationView.showContent(this.view);
+
+            this.listenTo(this.view, {
+                'delete-model': this.deleteOne
+            }, this);
         },
 
         initOne: function (id) {
@@ -46,7 +50,7 @@ define([
             });
 
             this.listenTo(this.view, {
-                'save-data': this.updateOne
+                'save-data': this.updateOne,
             }, this);
 
             this._getOne(_id);
@@ -98,6 +102,10 @@ define([
                     }
                 };
             this.model.sync('update', this.model, syncOptions);
+        },
+
+        deleteOne: function () {
+            console.log('Dellll ');
         }
 
 

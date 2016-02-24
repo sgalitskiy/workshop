@@ -9,6 +9,7 @@
             <th>location</th>
             <th>priority</th>
             <th>timestamp</th>
+            <th>delete</th>
         </tr>
     </thead>
 
@@ -26,6 +27,13 @@
                 <td><%=item.priority%></td>
                 <td>
                     <%=moment(item.Timestamp).format('LLL')%>
+                </td>
+                <td>
+                    <form class="form" action="">
+                        <div class="form-group">
+                            <input class="btn btn-danger" type="submit" value="Delete"/>
+                        </div>
+                    </form>
                 </td>
             </tr>
         <%})%>

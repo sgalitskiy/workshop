@@ -10,7 +10,7 @@ define([
         template: _.template(template),
 
         events:{
-
+            'submit form' : 'onDelete'
         },
 
         initialize:function(options){
@@ -32,11 +32,20 @@ define([
             }
         },
 
+        onDelete: function(e){
+            // var $form = $(e.currentTarget),
+                // data = $form.serializeJSON({parseAll:true});
+
+            // console.log('delete-model click');
+
+            this.trigger('delete-model');
+
+            e.preventDefault();
+        },
+
         _renderList: function() {
             this.render();
         }
-
-
 
     });
 
