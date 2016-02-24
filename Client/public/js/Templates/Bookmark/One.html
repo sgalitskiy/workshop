@@ -1,4 +1,4 @@
-<% if (model && model.Timestamp || " "){%>
+<% if (model && model.Timestamp || model.id === undefined){%>
 
     <form action="" class="form">
         <% if (model.RowKey){%>
