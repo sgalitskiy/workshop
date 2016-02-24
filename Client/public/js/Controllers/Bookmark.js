@@ -5,10 +5,9 @@ define([
     'Collections/Bookmarks',
     'Views/Bookmark/ListView',
     'Views/Bookmark/OneView',
-    'Views/Bookmark/OneEditView',
-    'Views/Bookmark/newBookmarkView'
+    'Views/Bookmark/OneEditView'
 
-], function (Backbone, ControllerBase, Model, Collection, ListView, OneView, EditView, newBookmarkView) {
+], function (Backbone, ControllerBase, Model, Collection, ListView, OneView, EditView) {
 
     var controller = ControllerBase.extend({
         titleHeader: 'Bookmarks',
@@ -54,37 +53,7 @@ define([
 
             this.options.applicationView.showContent(this.view)
 
-        },
-
-        addBookmark: function () {
-            console.log('add Bookmark init');
-
-            this.model = new Model({
-                // RowKey: _id
-            });
-
-            this.view = new newBookmarkView({
-                // model: this.model
-            });
-
-            this.options.applicationView.showContent(this.view)
-
-            // var _id = id || null;
-            //
-            // this.model = new Model({
-            //     RowKey: _id
-            // });
-            //
-            // this.view = new OneView({
-            //     model:this.model
-            // });
-            //
-            // this.listenTo(this.view, {
-            //     'save-data': this.updateOne
-            // }, this);
-            //
-            // this._getOne(_id);
-            //
+            // console.log('IDDDDD ' + this.model.id);
 
         },
 
@@ -130,7 +99,29 @@ define([
                         console.log('error getting one item');
                     }
                 };
-            this.model.sync('update', this.model, syncOptions);
+
+            if (this.model.id === null) {
+                this.model.sync('create', this.model, syncOptions);
+            }
+            else {
+                this.model.sync('update', this.model, syncOptions);
+            };
+        },
+
+        createOne: function (data) {
+            console.log('bla-controller', data);
+
+            var that = this,
+                syncOptions = {
+                    cdata:data,
+                    success: function (model, resp, xhr) {
+                        console.log('success get one item');
+                    },
+                    error: function () {
+                        console.log('error getting one item');
+                    }
+                };
+            this.model.sync('create', this.model, syncOptions);
         }
 
 
