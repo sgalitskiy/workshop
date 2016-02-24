@@ -106,24 +106,7 @@ define([
             else {
                 this.model.sync('update', this.model, syncOptions);
             };
-        },
-
-        createOne: function (data) {
-            console.log('bla-controller', data);
-
-            var that = this,
-                syncOptions = {
-                    cdata:data,
-                    success: function (model, resp, xhr) {
-                        console.log('success get one item');
-                    },
-                    error: function () {
-                        console.log('error getting one item');
-                    }
-                };
-            this.model.sync('create', this.model, syncOptions);
         }
-
 
     });
 
