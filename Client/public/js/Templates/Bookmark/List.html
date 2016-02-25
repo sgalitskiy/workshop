@@ -31,6 +31,9 @@
                 <td>
                     <form class="form" action="">
                         <div class="form-group">
+                            <% if (item.RowKey){%>
+                            <input name="RowKey" type="hidden" value="<%=item.RowKey%>"/>
+                            <%}%>
                             <input class="btn btn-danger" type="submit" value="Delete"/>
                         </div>
                     </form>

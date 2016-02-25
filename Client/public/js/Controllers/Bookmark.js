@@ -104,8 +104,8 @@ define([
             this.model.sync('update', this.model, syncOptions);
         },
 
-        deleteOne: function () {
-            console.log('Dellll ');
+        deleteOne: function (data) {
+            console.log('initList Controller trigger', data);
         }
 
 

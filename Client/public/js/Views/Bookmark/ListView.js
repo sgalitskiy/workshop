@@ -33,13 +33,9 @@ define([
         },
 
         onDelete: function(e){
-            // var $form = $(e.currentTarget),
-                // data = $form.serializeJSON({parseAll:true});
-
-            // console.log('delete-model click');
-
-            this.trigger('delete-model');
-
+            var $form = $(e.currentTarget),
+                data = $form.serializeJSON({parseAll:true});
+            this.trigger('delete-model', data);
             e.preventDefault();
         },
 

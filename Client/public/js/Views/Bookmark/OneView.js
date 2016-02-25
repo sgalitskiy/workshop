@@ -34,11 +34,8 @@ define([
         onSubmit: function(e){
             var $form = $(e.currentTarget),
                 data = $form.serializeJSON({parseAll:true});
-
-            console.log('oloa', data);
-
+            console.log('OneView onSubmit ', data);
             this.trigger('save-data', data);
-
             e.preventDefault();
         }
 
