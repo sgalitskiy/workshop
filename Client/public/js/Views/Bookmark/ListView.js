@@ -10,7 +10,7 @@ define([
         template: _.template(template),
 
         events:{
-            'submit form' : 'onDelete'
+            'click form' : 'onDelete'
         },
 
         initialize:function(options){
