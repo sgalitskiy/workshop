@@ -106,7 +106,7 @@ define([
 
         deleteOne: function (data) {
             // console.log('initList Controller trigger', data);
-            // console.log(this.collection.get(data.RowKey));
+            console.log('Model with RowKey ' + data.RowKey + ' removed from database');
 
             this.model = this.collection.get(data.RowKey);
             var that = this,
