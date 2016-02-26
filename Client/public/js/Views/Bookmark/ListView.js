@@ -17,7 +17,8 @@ define([
             this.collection = options.collection;
 
             this.listenTo(this.collection, {
-                'sync': this._renderList
+                'sync': this._renderList,
+                // 'delete-model': this._renderList
             }, this);
         },
 

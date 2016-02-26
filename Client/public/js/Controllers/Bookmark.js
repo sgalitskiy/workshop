@@ -105,7 +105,21 @@ define([
         },
 
         deleteOne: function (data) {
-            console.log('initList Controller trigger', data);
+            // console.log('initList Controller trigger', data);
+            // console.log(this.collection.get(data.RowKey));
+
+            this.model = this.collection.get(data.RowKey);
+            var that = this,
+                syncOptions = {
+                    cdata:data,
+                    success: function (model, resp, xhr) {
+                        console.log('success get one item');
+                    },
+                    error: function () {
+                        console.log('error getting one item');
+                    }
+                };
+            this.model.sync('delete', this.model, syncOptions);
         }
 
 
