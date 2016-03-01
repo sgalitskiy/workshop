@@ -7,7 +7,7 @@ define([
     'Views/Bookmark/OneView',
     'Views/Bookmark/OneEditView'
 
-], function (Backbone, ControllerBase, Model, Collection, ListView, OneView) {
+], function (Backbone, ControllerBase, Model, Collection, ListView, OneView, EditView) {
 
     var controller = ControllerBase.extend({
         titleHeader: 'Bookmarks',
@@ -23,7 +23,7 @@ define([
         },
 
         initList: function () {
-            console.log('init list page uhahaha');
+            console.log('initList ready');
             this.collection = new Collection();
             this.view = new ListView({
                 collection: this.collection
@@ -34,7 +34,7 @@ define([
         },
 
         initOne: function (id) {
-            console.log('init one', id);
+            console.log('initOne ID >>> ', id);
             var _id = id || null;
 
             this.model = new Model({
@@ -64,12 +64,12 @@ define([
                 // RowKey: _id
             });
 
-            this.view = new OneView({
+            this.view = new EditView({
                 model:this.model
             });
 
             this.listenTo(this.view, {
-                'save-data': this.createOne
+                'create-new-data': this.createOne
             }, this);
 
             // this._getOne(_id);
@@ -110,7 +110,7 @@ define([
         },
 
         updateOne: function (data) {
-            console.log('bla-controller', data);
+            console.log('updateOne >>> ', data);
 
             var that = this,
                 syncOptions = {
@@ -126,7 +126,7 @@ define([
             },
 
         createOne: function (data) {
-            console.log('bla-controller', data);
+            console.log('createOne >>> ', data);
 
             var that = this,
                 syncOptions = {

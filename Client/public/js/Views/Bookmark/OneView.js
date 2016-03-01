@@ -22,7 +22,7 @@ define([
         },
 
         onRender: function() {
-            console.log('render one model');
+            console.log('render OneView ');
         },
 
         serializeData:function(){
@@ -35,7 +35,7 @@ define([
             var $form = $(e.currentTarget),
                 data = $form.serializeJSON({parseAll:true});
 
-            console.log('oloa', data);
+            console.log('_onSubmit OneView >>> ', data);
 
             this.trigger('save-data', data);
 

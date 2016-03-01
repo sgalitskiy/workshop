@@ -11,9 +11,8 @@ define([
             "bookmark":{ // controller name
                 //routes
                 "(/)":"initList",
-                "(/)itemNew(/)":"initOne",
                 "(/)itemNew(/)":"initCreate",
-                "bookmark(s)/all":"initList",
+                // "bookmark(s)/all":"initList", WTF ?
                 "bookmark/:id(/)":"initOne"
             }
         },

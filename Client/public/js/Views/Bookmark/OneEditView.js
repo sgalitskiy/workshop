@@ -10,7 +10,7 @@ define([
         template: _.template(template),
 
         events:{
-          'submit form':'_onSubmit'
+            'submit form':'_onSubmit'
         },
 
         initialize:function(options){
@@ -22,7 +22,7 @@ define([
         },
 
         onRender: function() {
-            console.log('render one edit page', this.model);
+            console.log('render OneEditView ', this.model);
         },
 
         serializeData:function(){
@@ -31,13 +31,17 @@ define([
             }
         },
 
-        _onSubmit:function(e){
-            var data = $(e.currentTarget).serializeJSON();
-            this.trigger('save', data);
+        _onSubmit: function(e){
+            var $form = $(e.currentTarget),
+                data = $form.serializeJSON({parseAll:true});
 
-            console.log('submit ololo');
-            return false;
+            console.log('_onSubmit OneEditView >>> ', data);
+
+            this.trigger('create-new-data', data);
+
+            e.preventDefault();
         }
+
 
 
     });
