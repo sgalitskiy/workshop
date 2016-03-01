@@ -7,7 +7,7 @@ define([
     'Views/Bookmark/OneView',
     'Views/Bookmark/OneEditView'
 
-], function (Backbone, ControllerBase, Model, Collection, ListView, OneView, EditView) {
+], function (Backbone, ControllerBase, Model, Collection, ListView, OneView) {
 
     var controller = ControllerBase.extend({
         titleHeader: 'Bookmarks',
@@ -57,6 +57,29 @@ define([
 
         },
 
+        initCreate: function (id) {
+            // console.log('Bookmark controller init Create', id);
+            // var _id = id || null;
+            this.model = new Model({
+                // RowKey: _id
+            });
+
+            this.view = new OneView({
+                model:this.model
+            });
+
+            this.listenTo(this.view, {
+                'save-data': this.createOne
+            }, this);
+
+            // this._getOne(_id);
+
+            this.options.applicationView.showContent(this.view)
+
+            // console.log('initCreate ID ' + this.model.id);
+
+        },
+
         _fetchCollection: function () {
             var that = this,
                 syncOptions = {
@@ -99,14 +122,24 @@ define([
                         console.log('error getting one item');
                     }
                 };
+                this.model.sync('update', this.model, syncOptions);
+            },
 
-            if (this.model.id === null) {
+        createOne: function (data) {
+            console.log('bla-controller', data);
+
+            var that = this,
+                syncOptions = {
+                    cdata:data,
+                    success: function (model, resp, xhr) {
+                        console.log('success get one item');
+                    },
+                    error: function () {
+                        console.log('error getting one item');
+                    }
+                };
                 this.model.sync('create', this.model, syncOptions);
             }
-            else {
-                this.model.sync('update', this.model, syncOptions);
-            };
-        }
 
     });
 

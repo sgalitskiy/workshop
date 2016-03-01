@@ -10,7 +10,7 @@ define([
         template: _.template(template),
 
         events:{
-            'submit form':'onSubmit'
+            'submit form':'_onSubmit'
         },
 
         initialize:function(options){
@@ -31,7 +31,7 @@ define([
             }
         },
 
-        onSubmit: function(e){
+        _onSubmit: function(e){
             var $form = $(e.currentTarget),
                 data = $form.serializeJSON({parseAll:true});
 
